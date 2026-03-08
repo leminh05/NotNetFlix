@@ -1,0 +1,17 @@
+# --- Frontend (Next.js) ---
+notnetflix-frontend/node_modules/
+notnetflix-frontend/.next/
+notnetflix-frontend/out/
+notnetflix-frontend/.env*.local
+
+# --- Backend (Spring Boot) ---
+notnetflix-backend/target/
+notnetflix-backend/classes/
+notnetflix-backend/*.jar
+notnetflix-backend/*.war
+
+# --- IDE & OS (Các file rác của máy tính) ---
+.idea/
+.vscode/
+*.iml
+.DS_Store
