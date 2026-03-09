@@ -35,6 +35,7 @@ TMDB API             Global source for movie metadata and high-quality assets.
 MongoDB              Flexible NoSQL database for efficient user data management.
 
 📸 Project Gallery
+
 Hero
 <img width="1900" height="952" alt="image" src="https://github.com/user-attachments/assets/bbfbe3aa-5fcd-4ac8-87c3-6521d05ab13d" />
 Login
