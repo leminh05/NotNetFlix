@@ -1,64 +1,68 @@
-🚩 NotNetflix - Fullstack Movie Streaming Web App
-A Netflix-inspired web application built with a modern Fullstack architecture, featuring a Spring Boot backend and a Next.js frontend. This project was developed as a midterm assignment for the Advanced Java Programming course.
+🎬 NotNetflix - Fullstack Movie Streaming Clone
+NotNetflix is a comprehensive Netflix clone built with a modern fullstack architecture. This project focuses on integrating real-time global movie data, optimizing User Experience (UX), and implementing robust authentication management.
 
 🚀 Key Features
-Smart Authentication Flow:
+🎨 Frontend (Next.js 15 & Tailwind CSS)
+Signature Branding: A custom-designed logo featuring the distinct NOT (white) and NETFLIX (red) color split.
 
-Two-step login process (Email check -> Password input).
+Smart Billboard: Dynamically fetches a random trending movie from the TMDB API to serve as a high-impact hero banner upon every page refresh.
 
-Automatic routing between Sign In (existing users) and Sign Up (new users).
+Enhanced Movie Rows: * Ghost Scrollbars: Default browser scrollbars are hidden for a sleek, premium aesthetic.
 
-Security & Validation:
+Interactive Navigation: Custom side-scroll arrows that appear on hover for intuitive browsing.
 
-Strict password policy: Minimum 12 characters, including uppercase, lowercase, numbers, and symbols.
+Cinematic UX: Smooth scrolling animations and scale-up effects on poster hover.
 
-Email format validation using Regex.
+Dynamic Modals: A detailed "More Info" pop-up that displays real-time synopses, ratings, and backdrops for selected titles.
 
-Modern UI/UX:
+Smart Categorization: Automatically organizes content into curated rows: Trending, Action, Comedy, Horror, and Romance.
 
-Responsive Hero Banner with 2000x1125 high-resolution background.
+Clean Codebase: Fully written in TypeScript with zero ESLint errors, utilizing advanced React Hooks such as updater functions for state management.
 
-Netflix-style movie rows with horizontal scrolling and hover effects.
+⚙️ Backend (Spring Boot & MongoDB)
+Authentication: Robust logic for user sign-in and account validation.
 
-Interactive navigation bar with a hidden "Sign Out" menu on user avatar hover.
+Security: Session management and secure handling of user credentials.
 
-Persistent Session:
+Database: High-performance storage of user data using MongoDB.
 
-Local storage integration to maintain login states and prevent unauthorized access to the /browse page.
+🛠 Tech Stack
+Technology           
+Next.js 15           Core framework featuring App Router and Server-Side Rendering (SSR).
+Tailwind CSS         Utility-first CSS for rapid, responsive, and modern UI styling.
+Spring Boot          Powering a scalable RESTful API backend.
+TMDB API             Global source for movie metadata and high-quality assets.
+MongoDB              Flexible NoSQL database for efficient user data management.
 
-🛠️ Tech Stack
-Frontend
-Framework: Next.js 14+ (App Router).
+📸 Project Gallery
 
-Styling: Tailwind CSS for a sleek, dark-themed UI.
+Hero
+<img width="1900" height="952" alt="image" src="https://github.com/user-attachments/assets/bbfbe3aa-5fcd-4ac8-87c3-6521d05ab13d" />
+Login
+<img width="1905" height="946" alt="image" src="https://github.com/user-attachments/assets/6cac4299-ce07-42f3-ab9d-8b109684c0f4" />
+Browse Dashboard
+<img width="1897" height="949" alt="image" src="https://github.com/user-attachments/assets/b93cc886-6bf5-4e64-9eeb-14cef75c95d9" />
 
-State Management: React Hooks (useState, useEffect).
+🛠 Installation & Setup
+Clone the repository:
 
-Backend
-Framework: Java Spring Boot.
+Bash
+git clone https://github.com/Minh/NotNetflix.git
+Setup Frontend:
 
-Database: MongoDB (NoSQL) for flexible user data storage.
+Bash
 
-Tools: MongoDB Compass for database management.
+cd notnetflix-frontend
 
-⚙️ Installation & Setup
-Backend:
+npm install
 
-Ensure MongoDB is running locally.
+npm run dev
 
-Open notnetflix-backend in VS Code/IntelliJ.
+API Configuration:
 
-Run DemoApplication.java. The server starts on http://localhost:8080.
+Navigate to src/app/browse/page.tsx and insert your TMDB API Key into the API_KEY variable.
 
-Frontend:
+👨‍💻 Author
+Minh - Fullstack Developer
 
-Navigate to notnetflix-frontend.
-
-Run npm install followed by npm run dev.
-
-Access the app at http://localhost:3000.
-
-📝 Credentials Policy
-Passwords must be at least 12 characters long.
-
-Must include Uppercase, Lowercase, Numbers, and Special Characters (e.g., !@#$%^&*).
+This project was developed as a major assignment for the Advanced Java Programming course.
