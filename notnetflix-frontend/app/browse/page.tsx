@@ -3,24 +3,55 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+interface Movie {
+  id: number;
+  title?: string;
+  name?: string;
+  poster_path: string;
+  backdrop_path: string;
+  overview: string;
+  vote_average?: number;
+  vote_count?: number;
+  release_date?: string;
+  first_air_date?: string;
+  original_language?: string;
+}
+
+interface MovieCategory {
+  title: string;
+  movies: Movie[];
+}
+
 export default function BrowsePage() {
   const router = useRouter();
   const [userEmail, setUserEmail] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState<any>(null);
-  const [movieCategories, setMovieCategories] = useState<any[]>([]);
-  const [billboardMovie, setBillboardMovie] = useState<any>(null);
+  
+  // Thay thế toàn bộ 'any' bằng các Interface đã khai báo ở trên
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [movieCategories, setMovieCategories] = useState<MovieCategory[]>([]);
+  const [billboardMovie, setBillboardMovie] = useState<Movie | null>(null);
 
   // 1. KIỂM TRA ĐĂNG NHẬP
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
     const email = localStorage.getItem("userEmail");
+    
     if (!loggedIn) {
       router.push("/login");
-    } else if (userEmail === "") {
-      setUserEmail(email ?? "User");
+    } else {
+      // Dùng hàm updater để tránh vòng lặp render
+      setUserEmail((currentEmail) => {
+        // Chỉ cập nhật nếu currentEmail hiện tại đang trống
+        if (!currentEmail) {
+          return email ?? "User";
+        }
+        // Nếu đã có giá trị rồi thì giữ nguyên, không làm gì cả
+        return currentEmail;
+      });
     }
-  }, [router, userEmail]);
+    // Quan trọng: Chỉ để router ở đây, xóa userEmail đi
+  }, [router]);
 
   // 2. GỌI API LẤY PHIM THẬT & BANNER NGẪU NHIÊN
   useEffect(() => {
@@ -64,7 +95,8 @@ export default function BrowsePage() {
     }
   };
 
-  const openModal = (movie: any) => {
+  // Định nghĩa kiểu dữ liệu 'Movie' cho tham số truyền vào hàm
+  const openModal = (movie: Movie) => {
     setSelectedMovie(movie);
     setShowModal(true);
   };
@@ -89,7 +121,7 @@ export default function BrowsePage() {
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="User" className="w-8 h-8 rounded" />
             <div className="absolute right-0 top-10 hidden group-hover:flex flex-col bg-black/95 border border-gray-800 py-3 w-48 shadow-2xl">
               <div className="px-4 py-2 text-xs text-gray-400 border-b border-gray-800 mb-2 truncate">{userEmail}</div>
-              <button onClick={handleLogout} className="px-4 py-2 text-sm text-left hover:bg-zinc-800 transition">Sign out</button>
+              <button onClick={handleLogout} className="px-4 py-2 text-sm text-left hover:bg-zinc-800 transition text-white">Sign out</button>
             </div>
           </div>
         </div>
@@ -130,7 +162,7 @@ export default function BrowsePage() {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="white" className="w-8 h-8"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
               </div>
               <div id={`slider-${catIndex}`} className="flex space-x-3 overflow-x-auto py-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth">
-                {category.movies.map((movie: any, index: number) => (
+                {category.movies.map((movie, index) => (
                   <img 
                     key={index} 
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 

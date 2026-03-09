@@ -2,10 +2,18 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+interface Movie {
+  id: number;
+  title?: string;
+  name?: string;
+  poster_path: string;
+  backdrop_path: string;
+  overview: string;
+}
 
 export default function Home() {
   const router = useRouter();
-  const [trendingMovies, setTrendingMovies] = useState<any[]>([]);
+  const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
 
   // Gọi API lấy 6 phim Trending cho trang chủ
   useEffect(() => {
