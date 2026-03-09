@@ -73,6 +73,8 @@ export default function LoginPage() {
         if (res.ok) {
           setIsError(false);
           setMessage("Success! Redirecting...");
+          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("userEmail", email);
           setTimeout(() => router.push("/browse"), 1500);
         } else {
           setIsError(true);
@@ -88,9 +90,10 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#2b0808] to-black">
       <nav className="p-4 md:p-6 md:px-16">
-        <h1 onClick={() => router.push('/')} className="font-bebas text-4xl md:text-5xl font-bold tracking-wider cursor-pointer text-red-600 inline-block">
-          NOTNETFLIX
-        </h1>
+        <h1 onClick={() => router.push('/')} className="font-bebas text-4xl md:text-5xl font-bold tracking-wider cursor-pointer inline-block">
+  <span className="text-white">NOT</span>
+  <span className="text-red-600">NETFLIX</span>
+</h1>
       </nav>
 
       <div className="flex-grow flex items-center justify-center px-4 pb-20">
