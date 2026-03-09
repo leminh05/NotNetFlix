@@ -36,22 +36,12 @@ export default function BrowsePage() {
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
     const email = localStorage.getItem("userEmail");
-    
     if (!loggedIn) {
       router.push("/login");
-    } else {
-      // Dùng hàm updater để tránh vòng lặp render
-      setUserEmail((currentEmail) => {
-        // Chỉ cập nhật nếu currentEmail hiện tại đang trống
-        if (!currentEmail) {
-          return email ?? "User";
-        }
-        // Nếu đã có giá trị rồi thì giữ nguyên, không làm gì cả
-        return currentEmail;
-      });
+    } else if (userEmail === "") {
+      setUserEmail(email ?? "User");// eslint-disable-next-line react-hooks/exhaustive-deps
     }
-    // Quan trọng: Chỉ để router ở đây, xóa userEmail đi
-  }, [router]);
+  }, [router, userEmail]);
 
   // 2. GỌI API LẤY PHIM THẬT & BANNER NGẪU NHIÊN
   useEffect(() => {
