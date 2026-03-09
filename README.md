@@ -51,10 +51,15 @@ git clone https://github.com/Minh/NotNetflix.git
 Setup Frontend:
 
 Bash
+
 cd notnetflix-frontend
+
 npm install
+
 npm run dev
+
 API Configuration:
+
 Navigate to src/app/browse/page.tsx and insert your TMDB API Key into the API_KEY variable.
 
 👨‍💻 Author
