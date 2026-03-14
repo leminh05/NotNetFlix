@@ -1,68 +1,75 @@
-🎬 NotNetflix - Fullstack Movie Streaming Clone
-NotNetflix is a comprehensive Netflix clone built with a modern fullstack architecture. This project focuses on integrating real-time global movie data, optimizing User Experience (UX), and implementing robust authentication management.
+# 🎬 NotNetflix - Fullstack Movie Streaming Platform
 
-🚀 Key Features
-🎨 Frontend (Next.js 15 & Tailwind CSS)
-Signature Branding: A custom-designed logo featuring the distinct NOT (white) and NETFLIX (red) color split.
+**NotNetflix** is a modern Fullstack movie streaming platform designed to replicate the premium Netflix experience. The project integrates real-time data from the **TMDB API**, handles robust backend logic with **Spring Boot**, and delivers a high-performance UI via **Next.js 15**.
 
-Smart Billboard: Dynamically fetches a random trending movie from the TMDB API to serve as a high-impact hero banner upon every page refresh.
+---
 
-Enhanced Movie Rows: * Ghost Scrollbars: Default browser scrollbars are hidden for a sleek, premium aesthetic.
+## 🚀 Key Features
 
-Interactive Navigation: Custom side-scroll arrows that appear on hover for intuitive browsing.
+### 🎨 Frontend (Next.js 15 & Tailwind CSS)
+* **Cinematic Branding:** A sleek, dark-themed UI featuring Glassmorphism effects.
+* **Smart Billboard (Hero Banner):** * Dynamically fetches the week's top trending movie.
+    * **Trailer-on-Background:** Automatically plays trailers on the banner background.
+* **Dynamic Movie Rows:** Categorized browsing with Hover Zoom effects.
+* **Advanced Search & Security:** Debounce logic and Safe-Search keyword filtering.
 
-Cinematic UX: Smooth scrolling animations and scale-up effects on poster hover.
+### ⚙️ Backend (Spring Boot & MongoDB)
+* **Adaptive Authentication:** Two-step login process (Email check -> Password).
+* **Session Management:** Protected route management via `localStorage`.
 
-Dynamic Modals: A detailed "More Info" pop-up that displays real-time synopses, ratings, and backdrops for selected titles.
+---
 
-Smart Categorization: Automatically organizes content into curated rows: Trending, Action, Comedy, Horror, and Romance.
+## 🛠 Tech Stack
 
-Clean Codebase: Fully written in TypeScript with zero ESLint errors, utilizing advanced React Hooks such as updater functions for state management.
+### **Frontend**
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
-⚙️ Backend (Spring Boot & MongoDB)
-Authentication: Robust logic for user sign-in and account validation.
+### **Backend & Database**
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
-Security: Session management and secure handling of user credentials.
+### **APIs & Tools**
+![TMDB](https://img.shields.io/badge/TMDB_API-01d277?style=for-the-badge&logo=themoviedatabase&logoColor=white)
+![YouTube](https://img.shields.io/badge/YouTube_IFrame-FF0000?style=for-the-badge&logo=youtube&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-Database: High-performance storage of user data using MongoDB.
+---
 
-🛠 Tech Stack
-Technology           
-Next.js 15           Core framework featuring App Router and Server-Side Rendering (SSR).
-Tailwind CSS         Utility-first CSS for rapid, responsive, and modern UI styling.
-Spring Boot          Powering a scalable RESTful API backend.
-TMDB API             Global source for movie metadata and high-quality assets.
-MongoDB              Flexible NoSQL database for efficient user data management.
+## 💡 Technical Highlights
 
-📸 Project Gallery
+1.  **Performance Optimization:** Managed `useEffect` dependencies to prevent infinite re-renders.
+2.  **UX/UI Polish:** Integrated custom **Loading Spinners** for immediate visual feedback.
+3.  **Type Safety:** Utilized TypeScript strict mode for robust development.
 
-Hero
-<img width="1900" height="952" alt="image" src="https://github.com/user-attachments/assets/bbfbe3aa-5fcd-4ac8-87c3-6521d05ab13d" />
-Login
-<img width="1905" height="946" alt="image" src="https://github.com/user-attachments/assets/6cac4299-ce07-42f3-ab9d-8b109684c0f4" />
-Browse Dashboard
-<img width="1897" height="949" alt="image" src="https://github.com/user-attachments/assets/b93cc886-6bf5-4e64-9eeb-14cef75c95d9" />
+---
 
-🛠 Installation & Setup
-Clone the repository:
+## 💻 Installation & Setup
 
-Bash
-git clone https://github.com/Minh/NotNetflix.git
-Setup Frontend:
+### **1. Backend Setup (Spring Boot)**
+```bash
+# Navigate to backend directory
+cd notnetflix-backend
 
-Bash
+# Ensure MongoDB is running, then run the application
+./mvnw spring-boot:run
+```
 
+### **1. Frontend Setup (Spring Boot)**
+```bash
+# Navigate to frontend directory
 cd notnetflix-frontend
 
+# Install dependencies
 npm install
 
+# Start the development server
 npm run dev
-
-API Configuration:
-
-Navigate to src/app/browse/page.tsx and insert your TMDB API Key into the API_KEY variable.
-
-👨‍💻 Author
+```
+## 💻 Installation & Setup
 Minh - Fullstack Developer
 
-This project was developed as a major assignment for the Advanced Java Programming course.
+Developed as a capstone project for the Advanced Java Programming course.
