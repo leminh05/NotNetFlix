@@ -1,75 +1,36 @@
-# 🎬 NotNetflix - Fullstack Movie Streaming Platform
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-**NotNetflix** is a modern Fullstack movie streaming platform designed to replicate the premium Netflix experience. The project integrates real-time data from the **TMDB API**, handles robust backend logic with **Spring Boot**, and delivers a high-performance UI via **Next.js 15**.
+## Getting Started
 
----
+First, run the development server:
 
-## 🚀 Key Features
-
-### 🎨 Frontend (Next.js 15 & Tailwind CSS)
-* **Cinematic Branding:** A sleek, dark-themed UI featuring Glassmorphism effects.
-* **Smart Billboard (Hero Banner):** * Dynamically fetches the week's top trending movie.
-    * **Trailer-on-Background:** Automatically plays trailers on the banner background.
-* **Dynamic Movie Rows:** Categorized browsing with Hover Zoom effects.
-* **Advanced Search & Security:** Debounce logic and Safe-Search keyword filtering.
-
-### ⚙️ Backend (Spring Boot & MongoDB)
-* **Adaptive Authentication:** Two-step login process (Email check -> Password).
-* **Session Management:** Protected route management via `localStorage`.
-
----
-
-## 🛠 Tech Stack
-
-### **Frontend**
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-
-### **Backend & Database**
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-
-### **APIs & Tools**
-![TMDB](https://img.shields.io/badge/TMDB_API-01d277?style=for-the-badge&logo=themoviedatabase&logoColor=white)
-![YouTube](https://img.shields.io/badge/YouTube_IFrame-FF0000?style=for-the-badge&logo=youtube&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
-
----
-
-## 💡 Technical Highlights
-
-1.  **Performance Optimization:** Managed `useEffect` dependencies to prevent infinite re-renders.
-2.  **UX/UI Polish:** Integrated custom **Loading Spinners** for immediate visual feedback.
-3.  **Type Safety:** Utilized TypeScript strict mode for robust development.
-
----
-
-## 💻 Installation & Setup
-
-### **1. Backend Setup (Spring Boot)**
 ```bash
-# Navigate to backend directory
-cd notnetflix-backend
-
-# Ensure MongoDB is running, then run the application
-./mvnw spring-boot:run
-```
-
-### **1. Frontend Setup (Spring Boot)**
-```bash
-# Navigate to frontend directory
-cd notnetflix-frontend
-
-# Install dependencies
-npm install
-
-# Start the development server
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
-## 💻 Installation & Setup
-Minh - Fullstack Developer
 
-Developed as a capstone project for the Advanced Java Programming course.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
