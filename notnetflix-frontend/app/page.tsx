@@ -56,12 +56,12 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
 
         <div className="relative z-20 max-w-2xl mt-20">
-          <h2 className="text-5xl md:text-7xl font-extrabold text-white mb-4 drop-shadow-2xl">
-            SPRING BOOT <br /> IN ACTION
-          </h2>
-          <p className="text-lg md:text-xl text-gray-200 mb-8 drop-shadow-md font-light">
-            Watch the most thrilling backend architecture come to life. Build robust APIs, handle HLS video streaming, and scale your application to the top.
-          </p>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 drop-shadow-2xl uppercase">
+            Unlimited movies, TV shows, and more
+            </h1>
+          <p className="text-gray-200 text-lg md:text-xl mb-6 line-clamp-3 drop-shadow-md max-w-2xl">
+            Watch anywhere. Cancel anytime. Dive into a world of endless entertainment and discover your next favorite story today.
+            </p>
           
           <div className="flex space-x-4">
             <button onClick={() => router.push('/login')} className="flex items-center justify-center px-6 py-2 md:px-8 md:py-3 bg-white text-black font-bold rounded hover:bg-gray-300 transition text-lg">
