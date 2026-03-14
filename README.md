@@ -68,7 +68,7 @@ npm install
 # Start the development server
 npm run dev
 ```
-## 💻 Installation & Setup
-Minh - Fullstack Developer
+## 👨‍💻 Author
+Lê Quang Minh-2374802010310 - Fullstack Developer
 
 Developed as a capstone project for the Advanced Java Programming course.
