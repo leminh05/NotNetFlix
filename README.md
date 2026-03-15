@@ -1,44 +1,40 @@
 # 🎬 NotNetflix - Fullstack Video Streaming Platform
 
-A high-performance Netflix clone built with a modern Fullstack architecture. This platform delivers a seamless cinematic experience, integrating real-time movie data via TMDB API, dynamic YouTube trailer playback, and a secure Spring Boot backend for user authentication.
+A high-performance Netflix clone engineered with a modern Fullstack architecture. This platform delivers a seamless cinematic experience by integrating real-time movie metadata via TMDB API and dynamic video playback, powered by a robust Spring Boot backend.
 
 ---
 
 ## 🚀 Key Features & Performance Stats
 
-* **10,000+ Movies/TV Shows:** Real-time data synchronized directly from the international TMDB API.
-* **Smart Billboard:** Featuring **Trailer-on-Background** (plays video trailers instantly upon clicking Play) - An optimized performance solution instead of local video storage.
-* **Safe-Search Security:** Content security system via **Blacklist Keywords**, automatically filtering inappropriate results.
-* **Optimized UX:** Ultra-fast API response time (< 500ms) by applying **Debounce** techniques and React Hooks state management.
-* **Step-by-step Auth:** Professional two-step login flow, handling account validation logic from the Spring Boot Backend.
+* **10,000+ Movies/TV Shows:** Real-time data synchronized directly from the international TMDB API (Phase 4 completed).
+* **Smart Billboard:** Featuring **Trailer-on-Background** – A high-performance solution for instant video previews without server-side storage overhead.
+* **Safe-Search Security:** Advanced content filtering via **Blacklist Keywords** to ensure a secure viewing environment.
+* **Optimized UX:** Ultra-low latency response time (< 500ms) utilizing **Debounce** techniques and React state orchestration.
+* **Robust Authentication:** A secure two-step login pipeline (Email Validation -> Password) managed by Spring Security.
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Technology Stack
 
-### **Frontend (The User Experience)**
+### **Frontend (Client Layer)**
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
-### **Backend & Database (The Engine)**
+### **Backend & Database (Core Engine)**
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-
-### **Integrations**
-![TMDB](https://img.shields.io/badge/TMDB_API-01d277?style=for-the-badge&logo=themoviedatabase&logoColor=white)
-![YouTube](https://img.shields.io/badge/YouTube_IFrame-FF0000?style=for-the-badge&logo=youtube&logoColor=white)
 
 ---
 
 ## 💡 Technical Highlights
 
-1. **Hybrid Rendering:** Combined the power of Server-side and Client-side in Next.js 15 to optimize SEO and user experience.
-2. **Trailer Filtering:** Automated logic to search and filter English "Official" trailers from the YouTube API.
-3. **CORS Security:** Secure connection configuration between Frontend (port 3000) and Backend (port 8080).
-4. **Interactive UI:** Utilized Loading Spinners and smooth CSS transitions to enhance the platform's realism.
+1. **RESTful Orchestration:** Secure communication between Next.js (Port 3000) and Spring Boot (Port 8080) with full CORS configuration.
+2. **Dynamic Content Delivery:** Optimized metadata retrieval using asynchronous Spring services for high responsiveness.
+3. **Cinematic UI/UX:** Implementation of Skeleton Screens, Loading Spinners, and CSS transitions for a premium streaming feel.
+4. **Data Flexibility:** Utilized MongoDB's NoSQL nature to handle unstructured movie metadata efficiently.
 
 ---
 
