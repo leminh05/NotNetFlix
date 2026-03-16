@@ -1,17 +1,37 @@
 version: '3.8'
+
 services:
-  backend:
+  # Database:
+  database:
+    image: mongo:latest
+    container_name: mongodb-container
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db # Giúp lưu lại dữ liệu ngay cả khi tắt Docker
+
+  # (Backend Spring Boot)
+  backend-api:
     build: ./notnetflix-backend
+    container_name: backend-container
     ports:
       - "8080:8080"
     environment:
-      - MONGO_URI=mongodb://localhost:27017/notnetflix 
+      # Kết nối vào dịch vụ 'database' bên trên
+      - MONGO_URI=mongodb://database:27017/notnetflix
+    depends_on:
+      - database
 
-  frontend:
+  # (Frontend Next.js)
+  frontend-web:
     build: ./notnetflix-frontend
+    container_name: frontend-container
     ports:
       - "3000:3000"
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:8080
     depends_on:
-      - backend
+      - backend-api
+
+volumes:
+  mongo-data: # Khai báo ổ đĩa ảo để giữ dữ liệu
