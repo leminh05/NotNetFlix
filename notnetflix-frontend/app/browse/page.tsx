@@ -245,7 +245,7 @@ export default function BrowsePage() {
       {/* NẾU ĐANG TÌM KIẾM THÌ HIỆN LƯỚI PHIM, NẾU KHÔNG THÌ HIỆN TRANG CHỦ BÌNH THƯỜNG */}
       {searchQuery.length > 0 ? (
         <div className="pt-32 px-4 md:px-12 min-h-screen z-20 relative">
-          <h2 className="text-2xl text-gray-400 mb-6">Kết quả tìm kiếm cho: "{searchQuery}"</h2>
+          <h2 className="text-2xl text-gray-400 mb-6">Kết quả tìm kiếm cho: &quot;{searchQuery}&quot;</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {searchResults.map((movie, index) => {
               if (!movie.poster_path) return null; // Bỏ qua phim không có ảnh
@@ -327,6 +327,7 @@ export default function BrowsePage() {
           <div className="h-full w-full bg-zinc-900 animate-pulse flex items-center justify-center text-gray-500">Loading Billboard...</div>
         )}
       </div>
+      
           {/* CÁC HÀNG PHIM CÓ MŨI TÊN */}
           <div className="relative pb-24 -mt-20 z-20">
             {movieCategories.map((category, catIndex) => (
