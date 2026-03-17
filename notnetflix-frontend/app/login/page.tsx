@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { AuthService } from "../../auth.service";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -39,9 +40,16 @@ export default function LoginPage() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email }),
+          cache: "no-store", 
         });
-        const exists = await res.json();
-        setIsExistingUser(exists);
+        
+       
+        const data = await res.text(); 
+        
+       
+        const isExist = data === "true"; 
+        
+        setIsExistingUser(isExist);
         setStep(2);
       } catch (error) {
         setIsError(true);
