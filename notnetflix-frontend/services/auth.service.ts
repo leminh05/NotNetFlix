@@ -39,6 +39,6 @@ export const AuthService = {
       const errorMsg = await res.text();
       throw new Error(errorMsg); // Trả về lỗi nếu đăng nhập thất bại
     }
-    return res.text();
+    return res.json();
   }
 };

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service // Nơi xử lý logic liên quan đến Authentication
+@Service 
 public class AuthService {
 
     @Autowired
@@ -17,7 +17,7 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // 1. Logic Kiểm tra Email
+    // 1. Logic Check Email Existence
     public boolean checkEmailExists(String email) {
         if (email == null || email.trim().isEmpty()) {
             return false;
@@ -25,18 +25,22 @@ public class AuthService {
         return userRepository.findByEmail(email).isPresent();
     }
 
-    // 2. Logic Đăng ký
+    // 2. Logic Register (Updated with Status)
     public void registerUser(User user) throws Exception {
         if (checkEmailExists(user.getEmail())) {
             throw new Exception("This email is already in use.");
         }
-        // Băm mật khẩu và lưu
+        
+        user.setRole("USER"); 
+        user.setStatus("ACTIVE"); // Default status for new users
+        
+        // Hash password before saving to database
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
         userRepository.save(user);
     }
 
-    // 3. Logic Đăng nhập
+    // 3. Logic Login (Updated with Banned Check)
     public User authenticateUser(String email, String password) throws Exception {
         Optional<User> userOptional = userRepository.findByEmail(email);
         
@@ -45,6 +49,12 @@ public class AuthService {
         }
 
         User existingUser = userOptional.get();
+        
+        // Check if the account is banned
+        if ("BANNED".equals(existingUser.getStatus())) {
+            throw new Exception("Your account has been suspended due to a violation of our terms.");
+        }
+
         if (password == null || existingUser.getPassword() == null) {
             throw new Exception("Password cannot be empty.");
         }
@@ -53,6 +63,6 @@ public class AuthService {
             throw new Exception("Incorrect password. Please try again.");
         }
 
-        return existingUser; // Thành công thì trả về thông tin user
+        return existingUser; // Success
     }
 }

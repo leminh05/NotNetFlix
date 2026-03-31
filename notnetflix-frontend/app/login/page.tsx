@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { AuthService } from "../../auth.service";
+import { AuthService } from "../../services/auth.service"; 
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,8 +14,6 @@ export default function LoginPage() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [isExistingUser, setIsExistingUser] = useState(false);
-  
-  // STATE MỚI: Quản lý trạng thái Loading
   const [isLoading, setIsLoading] = useState(false);
 
   const validateEmail = (emailText: string) => {
@@ -33,84 +31,78 @@ export default function LoginPage() {
         return;
       }
       setEmailError("");
-      setIsLoading(true); // Bật Loading
+      setIsLoading(true);
       
       try {
-        const res = await fetch("http://localhost:8080/api/auth/check-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-          cache: "no-store", 
-        });
-        
-       
-        const data = await res.text(); 
-        
-       
-        const isExist = data === "true"; 
-        
-        setIsExistingUser(isExist);
+        const existsString = await AuthService.checkEmail(email);
+        setIsExistingUser(existsString === "true");
         setStep(2);
-      } catch (error) {
+      } catch (error: any) {
         setIsError(true);
-        setMessage("Connection failed. Please check your backend.");
+        setMessage(error.message || "Connection failed. Please check your backend.");
       } finally {
-        setIsLoading(false); // Tắt Loading dù thành công hay thất bại
+        setIsLoading(false);
       }
       return;
     }
 
     // STEP 2: PASSWORD VALIDATION & AUTH
     if (step === 2) {
-      if (!isExistingUser) {
-        if (password.length < 6) {
-          setPasswordError("Password must be at least 6 characters.");
-          return;
-        }
-      } else {
-        if (password.trim() === "") {
-          setPasswordError("Please enter your password.");
-          return;
-        }
+      if (!isExistingUser && password.length < 6) {
+        setPasswordError("Password must be at least 6 characters.");
+        return;
+      } else if (isExistingUser && password.trim() === "") {
+        setPasswordError("Please enter your password.");
+        return;
       }
       
       setPasswordError("");
       setMessage("");
-      setIsLoading(true); // Bật Loading khi bắt đầu gửi API
+      setIsLoading(true);
 
-      const endpoint = isExistingUser ? "/api/auth/signin" : "/api/auth/signup";
-      
       try {
-        const res = await fetch(`http://localhost:8080${endpoint}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        });
+        if (isExistingUser) {
+          const userData = await AuthService.signIn(email, password);
+          setMessage("Welcome back! Redirecting...");
 
-        const data = await res.text();
-
-        if (res.ok) {
           setIsError(false);
-          setMessage("Success! Redirecting...");
+          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("userEmail", userData.email);
+          localStorage.setItem("userRole", userData.role);
+
+          setTimeout(() => {
+            if (userData.role === "ADMIN") {
+              router.push("/admin");
+            } else {
+              router.push("/browse");
+            }
+          }, 1500);
+
+        } else {
+          await AuthService.signUp(email, password);
+          setMessage("Account created! Redirecting...");
+          
+          setIsError(false);
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("userEmail", email);
-          // Không tắt Loading ở đây để nút cứ xoay cho đến khi chuyển trang xong
+          localStorage.setItem("userRole", "USER"); 
+          
           setTimeout(() => router.push("/browse"), 1500);
-        } else {
-          setIsError(true);
-          setMessage(data || "Incorrect password. Please try again."); 
-          setIsLoading(false); // Chỉ tắt Loading nếu đăng nhập sai
         }
-      } catch (error) {
+
+      } catch (error: any) {
+        // 🌟 FUNCTION MỚI ĐƯỢC THÊM Ở ĐÂY 🌟
         setIsError(true);
-        setMessage("Server error. Please try again later.");
-        setIsLoading(false); // Tắt Loading nếu lỗi server
+        // Lấy tin nhắn lỗi từ Backend (Ví dụ: "Your account has been suspended...")
+        setMessage(error.message || "Server error. Please try again later.");
+        // Quan trọng: Tắt loading để hiện thông báo lỗi và cho phép nhập lại
+        setIsLoading(false); 
       }
     }
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#2b0808] to-black">
+    <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#2b0808] to-black font-sans">
       <nav className="p-4 md:p-6 md:px-16">
         <h1 onClick={() => router.push('/')} className="font-bebas text-4xl md:text-5xl font-bold tracking-wider cursor-pointer inline-block">
           <span className="text-white">NOT</span>
@@ -160,18 +152,9 @@ export default function LoginPage() {
                   value={password} onChange={(e) => {setPassword(e.target.value); setPasswordError(""); setIsError(false); setMessage("");}} autoFocus
                 />
                 {passwordError && <p className="text-[#eb3942] text-xs mt-1 leading-relaxed">{passwordError}</p>}
-                
-                {isExistingUser && (
-                  <div className="text-right mt-2">
-                    <span className="text-sm text-gray-400 hover:text-gray-200 cursor-pointer transition underline decoration-transparent hover:decoration-gray-200">
-                      Forgot password?
-                    </span>
-                  </div>
-                )}
               </div>
             )}
 
-            {/* NÚT SUBMIT CÓ HIỆU ỨNG LOADING */}
             <button 
               type="submit" 
               disabled={isLoading}
