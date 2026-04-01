@@ -46,7 +46,7 @@ export default function LoginPage() {
       return;
     }
 
-    // STEP 2: PASSWORD VALIDATION & AUTH
+    // STEP 2: PASSWORD CHECK & AUTHENTICATION
     if (step === 2) {
       if (!isExistingUser && password.length < 6) {
         setPasswordError("Password must be at least 6 characters.");
@@ -91,11 +91,11 @@ export default function LoginPage() {
         }
 
       } catch (error: any) {
-        // 🌟 FUNCTION MỚI ĐƯỢC THÊM Ở ĐÂY 🌟
+        // Nếu có lỗi, đặt isError thành true để hiển thị thông báo lỗi và giữ lại email đã nhập để người dùng dễ dàng sửa lỗi
         setIsError(true);
-        // Lấy tin nhắn lỗi từ Backend (Ví dụ: "Your account has been suspended...")
+        // Hiển thị thông báo lỗi cụ thể từ backend nếu có, nếu không thì hiển thị lỗi chung
         setMessage(error.message || "Server error. Please try again later.");
-        // Quan trọng: Tắt loading để hiện thông báo lỗi và cho phép nhập lại
+        // Nếu lỗi liên quan đến đăng nhập, có thể là do mật khẩu sai hoặc tài khoản bị khóa, nên giữ lại email đã nhập để người dùng dễ dàng sửa lỗi
         setIsLoading(false); 
       }
     }

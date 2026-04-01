@@ -19,7 +19,7 @@ export default function AdminDashboard() {
   const [isLoadingUsers, setIsLoadingUsers] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // 1. LÍNH GÁC FRONTEND & FETCH DATA
+  // 1. FRONTEND & FETCH DATA
   useEffect(() => {
     const role = localStorage.getItem("userRole");
     const email = localStorage.getItem("userEmail");
@@ -52,7 +52,7 @@ export default function AdminDashboard() {
     }
   };
 
-  // 🌟 FUNCTION MỚI: TOGGLE BAN (Thay thế cho Delete)
+  // TOGGLE BAN (Thay thế cho Delete)
   const handleToggleBan = async (id: string, currentStatus: string) => {
     const action = currentStatus === "BANNED" ? "ACTIVATE" : "BAN";
     if (!window.confirm(`Are you sure you want to ${action} this user?`)) return;
@@ -73,7 +73,7 @@ export default function AdminDashboard() {
     }
   };
 
-  // 4. HÀM ĐỔI QUYỀN (UPDATE LEVEL)
+  // 4. HÀM TOGGLE ROLE USER
   const handleToggleRole = async (id: string) => {
     try {
       const res = await fetch(`http://localhost:8080/api/users/${id}/role`, {

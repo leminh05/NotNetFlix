@@ -86,7 +86,7 @@ export default function BrowsePage() {
     fetchAllMovies();
   }, []);
 
-  // --- 🛡️ SEARCH LOGIC WITH SAFE SEARCH FILTER ---
+  // --- SEARCH LOGIC WITH SAFE SEARCH FILTER ---
   useEffect(() => {
     const query = searchQuery.trim().toLowerCase();
     

@@ -50,12 +50,12 @@ public class UserService {
         
         return user.getFavoriteMovies() != null ? user.getFavoriteMovies() : new ArrayList<>();
     }
-    // 1. Xóa user (Giữ nguyên logic ObjectId của Minh)
+    // 1. Xóa user 
     public void deleteUser(String id) {
         userRepository.deleteById(id); 
     }
 
-    // 2. Đổi Role (Giữ nguyên logic an toàn của Minh)
+    // 2. Đổi Role 
     public User toggleRole(String id) throws Exception {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new Exception("User not found with ID: " + id));
@@ -67,13 +67,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    // 3. Đổi Status (Sửa tên thành toggleStatus để khớp với Controller)
+    // 3. Đổi Status (Active <-> Banned)
     public User toggleStatus(String id) throws Exception {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new Exception("User not found with ID: " + id));
     
-        // Nếu đang BANNED thì cho thành ACTIVE và ngược lại
-        // Dùng equals an toàn để chống lỗi Null nếu status bị trống
+        
         String newStatus = "BANNED".equals(user.getStatus()) ? "ACTIVE" : "BANNED";
         user.setStatus(newStatus);
         
